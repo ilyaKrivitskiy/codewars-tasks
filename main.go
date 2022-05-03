@@ -3,28 +3,28 @@ package main
 import (
 	"fmt"
 	"strconv"
-	"strings"
 )
 
-func Is_valid_ip(ip string) bool {
+func CreatePhoneNumber(numbers [10]uint) string {
+	res := ""
 
-	arr := strings.Split(ip, ".")
+	res += "(" +
+		strconv.FormatUint(uint64(numbers[0]), 10) +
+		strconv.FormatUint(uint64(numbers[1]), 10) +
+		strconv.FormatUint(uint64(numbers[2]), 10) +
+		") " +
+		strconv.FormatUint(uint64(numbers[3]), 10) +
+		strconv.FormatUint(uint64(numbers[4]), 10) +
+		strconv.FormatUint(uint64(numbers[5]), 10) +
+		"-" +
+		strconv.FormatUint(uint64(numbers[6]), 10) +
+		strconv.FormatUint(uint64(numbers[7]), 10) +
+		strconv.FormatUint(uint64(numbers[8]), 10) +
+		strconv.FormatUint(uint64(numbers[9]), 10)
 
-	if len(arr) != 4 {
-		return false
-	}
-
-	for _, s := range arr {
-		dig, err := strconv.Atoi(s)
-		if err != nil || dig < 0 || dig > 255 || (s[0] == '0' && len(s) != 1) {
-			return false
-		}
-
-	}
-
-	return true
+	return res
 }
 
 func main() {
-	fmt.Println(Is_valid_ip("123.045.067.089"))
+	fmt.Println(CreatePhoneNumber([10]uint{0, 1, 2, 3, 4, 5, 6, 7, 8, 9}))
 }
